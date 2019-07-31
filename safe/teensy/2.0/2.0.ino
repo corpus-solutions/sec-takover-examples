@@ -38,15 +38,8 @@ String SHELL_SCRIPT1 = "powershell -windowstyle hidden (new-object -com wscript.
 void loop() {
   
   // Your computer will receive these characters from a USB keyboard.
-  
-#ifdef MACOSX
-  blink(); blink(); blink();
   doMac();
-  
-#else if WINDOWS
-  blink(); blink(); 
   doWindows();
-#endif
 
   // stop forever (TODO: blink Teensy LED)
   while (true) {    
@@ -62,8 +55,16 @@ void blink() {
   delay(100);
 }
 
+/*
+ * Mac OS X
+ */
+
+void doMac()
+{
 #ifdef MACOSX
-void doMac() {
+
+  blink(); blink(); blink();
+
   pressAndReleaseAppleSpace(); 
   delay(1000); 
   
@@ -83,8 +84,8 @@ void doMac() {
 
   // ..to bash. Enter.
   Keyboard.println(SHELL_SCRIPT2);
-}
 #endif
+}
 
 void pressAndReleaseAppleSpace()
 {
@@ -134,13 +135,21 @@ void pressAndReleasePipe()
   Keyboard.send_now();
 }
 
+/*
+ * Windows
+ */
+ 
+void doWindows()
+{
 #ifdef WINDOWS
-void doWindows() {
+
+  blink(); blink(); 
+  
   pressAndReleaseWindowsR();
   delay(1000);
   Keyboard.print(SHELL_SCRIPT1);
-}
 #endif
+}
 
 void pressAndReleaseWindowsR()
 {
