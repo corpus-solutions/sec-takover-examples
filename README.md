@@ -5,7 +5,7 @@ Safe command-and-control scripts for education and demonstration of cybersec int
 
 Example of weaponizing $10 Teensy 2.0 (3D printed case not included, yet...)
 
-![Youtube](http://www.youtube.com/watch?v=tfEWzZ2QMbM)
+[Youtube](http://www.youtube.com/watch?v=tfEWzZ2QMbM)
 
 ### mac
 
