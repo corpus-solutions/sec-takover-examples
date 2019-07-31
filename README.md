@@ -11,6 +11,10 @@ Example of weaponizing $10 Teensy 2.0 (3D printed case not included, yet...)
 
 Script that opens the famous [Fake Update](http://fakeupdate.net) site in Safari with AppleScript forcing full-screen mode.
 
+### windows (untested)
+
+Same thing, but simplified to performing command instead of pulling whole script, which would be more dangerous.
+
 ### teensy
 
 Code for Teensy ++2.0 to serve as USB HID injector/keyboard simulator to download and run script above.
