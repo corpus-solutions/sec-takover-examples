@@ -10,13 +10,16 @@
  * HID SKETCHPAD (keep cursor here to stay on the safer side - well, not really)
  * 
  */
- 
-const int ledPin = 11;
+
+// Teensy 2.0 has the LED on pin 11
+// Teensy++ 2.0 has the LED on pin 6
+// Teensy 3.0 has the LED on pin 13
+const int ledPin = 6;
 
 void setup() {
   Serial.begin(9600);
   pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, LOW);
+  blink();
 }
 
 // Choose your target first:
@@ -36,30 +39,27 @@ void loop() {
   
   // Your computer will receive these characters from a USB keyboard.
   
-  blink();
-   
 #ifdef MACOSX
-  blink(); 
+  blink(); blink(); blink();
   doMac();
-  blink();
+  
 #else if WINDOWS
-  blink(); blink();
+  blink(); blink(); 
   doWindows();
-  blink();
 #endif
 
   // stop forever (TODO: blink Teensy LED)
-  while (true) {
-    delay(5000);
+  while (true) {    
     blink();
+    delay(60000);
   }
 }
 
 void blink() {
   digitalWrite(ledPin, HIGH);   // set the LED on
-  delay(500);                  // wait for a second
+  delay(300);                  // wait for a second
   digitalWrite(ledPin, LOW);    // set the LED off
-  delay(500);
+  delay(100);
 }
 
 #ifdef MACOSX
